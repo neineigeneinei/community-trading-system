@@ -1,38 +1,68 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #211a21; /* 大背景 */
   min-height: 100vh;
+}
+
+/* 轮播图按钮样式 */
+.react-material-ui-carousel .CarouselButton {
+  background-color: #211a21;
+  color: #FFD700;
+}
+
+.react-material-ui-carousel .CarouselButton:hover {
+  background-color: #211a21;
+}
+
+/* 设置页面基本样式 */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* 启用平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 设置每个部分的高度和样式 */
+.section {
+  height: 100vh; /* 每个部分高度为视口高度 */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* 设置不同部分的背景颜色 */
+.section-1 {
+  background-color: #FFD700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.section-2 {
+  background-color: #211a21;
+}
+
+.section-3 {
+  background-color: #FFD700;
+}
+
+
+
+/* 隐藏滚动条 */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Best-seller渲染 */
+@keyframes glow {
+  0% {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+      text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
   }
 }
