@@ -26,11 +26,11 @@ export default function MyCarousel() {
       {/* 轮播器 */}
       <Box
         sx={{
-          marginTop: "50px",
-          width: "1300px",
+          marginTop: "2px",
+          width: "1312px",
         }}
       >
-        <Carousel animation="fade" navButtonsAlwaysVisible>
+        <Carousel animation="slide" navButtonsAlwaysVisible duration={800}>
           {hotItems.map((item, index) => (
             <Box key={index} sx={{ position: "relative", textAlign: "left" }}>
               <img
@@ -48,15 +48,18 @@ export default function MyCarousel() {
                 sx={{
                   position: "absolute",
                   bottom: "20px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  color: "yellow",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  left: "20px",
+                  transform: "none",
+                  color: "white",
                   padding: 1,
                   borderRadius: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
                 }}
               >
-                {item.name} - {item.price}
+                <span>{item.name}</span>
+                <span style={{ fontSize: "0.8em" }}>floor: {item.price}</span>
               </Typography>
             </Box>
           ))}

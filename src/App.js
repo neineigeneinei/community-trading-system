@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
-  IconButton,
   TextField,
-  Container,
   Box,
-  Avatar,
-  Paper,
-  Fade,
-  Slide,
 } from "@mui/material";
-import { AccountCircle, Search } from "@mui/icons-material";
-import Carousel from "react-material-ui-carousel"; // 安装轮播组件库
+import {
+  AccountCircle,
+  Search,
+  ShoppingBag,
+  ShoppingCart,
+  Store,
+} from "@mui/icons-material";
 import "./App.css"; // 自定义样式
 import MyCarousel from "./components/MyCarousel";
 import Display from "./components/Display";
 import LowPrice from "./components/LowPrice";
 import Bottom from "./components/Bottom";
 import MostPopular from "./components/MostPopular";
+import SecCarousel from "./components/SecCarousel";
 
 function App() {
+  const navigate = useNavigate();
   const [hoveredSeller, setHoveredSeller] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   // 连接 MetaMask
   const connectMetaMask = async () => {
@@ -38,6 +42,27 @@ function App() {
       }
     } else {
       alert("MetaMask is not installed!");
+    }
+  };
+
+  // 导航栏按钮点击处理函数
+  const handleBuy = () => {
+    navigate("/buy");
+  };
+
+  const handleCart = () => {
+    navigate("/cart");
+  };
+
+  const handleSell = () => {
+    navigate("/sell");
+  };
+
+  // 搜索框处理函数
+  const handleSearch = (event) => {
+    if (event.key === "Enter") {
+      // TODO: 实现搜索功能
+      console.log("搜索:", event.target.value);
     }
   };
 
@@ -64,13 +89,14 @@ function App() {
           </Typography>
 
           {/* 中间的搜索框 */}
-          <Box sx={{ flexGrow: 20, display: "flex" }}>
+          <Box sx={{ flexGrow: 20, display: "flex", marginLeft: "20px" }}>
             <TextField
               variant="outlined"
               size="small"
               placeholder="搜索商品..."
+              onKeyPress={handleSearch}
               sx={{
-                width: "800px", // 设置搜索框宽度
+                width: "900px", // 设置搜索框宽度
                 backgroundColor: "white",
                 borderRadius: 1,
               }}
@@ -82,9 +108,32 @@ function App() {
             />
           </Box>
 
-          {/* 订单管理按钮 */}
-          <Button color="inherit" sx={{ marginRight: 2 }}>
-            订单管理
+          {/* 导航栏右部按钮 */}
+          <Button
+            color="inherit"
+            sx={{ marginRight: 2 }}
+            startIcon={<ShoppingBag />}
+            onClick={handleBuy}
+          >
+            购买
+          </Button>
+
+          <Button
+            color="inherit"
+            sx={{ marginRight: 2 }}
+            startIcon={<ShoppingCart />}
+            onClick={handleCart}
+          >
+            购物车
+          </Button>
+
+          <Button
+            color="inherit"
+            sx={{ marginRight: 2 }}
+            startIcon={<Store />}
+            onClick={handleSell}
+          >
+            出售
           </Button>
 
           {/* 连接 MetaMask 按钮 */}
@@ -99,13 +148,17 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      <Box sx={{ display: "flex", marginTop: "64px" }}>
+      {/* 二级导航栏 */}
+      <SecCarousel />
+
+      <Box sx={{ display: "flex", marginTop: "128px" }}>
         {/* 主页 */}
         <Box
           sx={{
             display: "flex",
             flex: "1",
             flexDirection: "column",
+            padding: 5,
             alignItems: "center",
           }}
         >
@@ -113,12 +166,15 @@ function App() {
         </Box>
       </Box>
 
-      {/* 最受欢迎卖家 */}
+      {/* 限时低价 */}
       <MostPopular />
+
       {/* 限时低价 */}
       <LowPrice />
+
       {/* 商品展示 */}
       <Display />
+
       {/* 底部 */}
       <Bottom />
     </div>

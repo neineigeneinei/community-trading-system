@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Typography, Box, Paper, Fade } from "@mui/material";
-import "../App.css"; // 自定义样式
+import "../App.css";
 
-// 模拟卖家数据
 const sellers = [
   {
     id: 1,
@@ -48,9 +47,7 @@ const sellers = [
   },
 ];
 
-/* 最受欢迎卖家 */
 export default function MostPopular() {
-  const [products, setProducts] = useState([]);
   const [hoveredSeller, setHoveredSeller] = useState(null);
 
   return (
@@ -60,31 +57,26 @@ export default function MostPopular() {
         marginRight: "100px",
       }}
     >
-      {/* 最受欢迎卖家标题 */}
       <Typography
         variant="h4"
         sx={{
           fontWeight: "bold",
           textAlign: "center",
           color: "white",
-          padding: "30px",
+          marginBottom: "30px",
         }}
       >
         最受欢迎卖家
       </Typography>
 
-      {/* 卖家信息 */}
       <Box
         sx={{
-          display: "flex",
-          gap: 4,
+          position: "relative",
           backgroundColor: "rgb(45, 38, 44)",
-          color: "white",
           padding: "40px",
           borderRadius: 2,
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-          overflowX: "hidden",
-          position: "relative",
+          overflow: "hidden",
           "&:hover .seller-container": {
             animationPlayState: "paused",
           },
@@ -101,77 +93,77 @@ export default function MostPopular() {
                 transform: "translateX(0)",
               },
               "100%": {
-                transform: "translateX(-100%)",
+                transform: "translateX(-50%)",
               },
             },
           }}
         >
           {[...sellers, ...sellers].map((seller, index) => (
             <Box
-              key={`${seller.id}-${index}`}
+              key={index}
               onMouseEnter={() => setHoveredSeller(seller)}
               onMouseLeave={() => setHoveredSeller(null)}
-              sx={{ position: "relative", minWidth: "200px" }}
+              sx={{ position: "relative" }}
             >
               <Paper
                 sx={{
-                  textAlign: "center",
+                  width: "200px",
+                  padding: 2,
                   backgroundColor: "rgb(45, 38, 44)",
+                  border: "1px solid white",
                   borderRadius: 2,
-                  width: "100%",
+                  textAlign: "center",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "center",
                   alignItems: "center",
-                  border: "1px solid white",
-                  padding: "15px",
-                  transition: "transform 0.2s",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                  },
+                  gap: 2,
                 }}
               >
-                <img
-                  src={seller.image}
-                  alt={seller.name}
-                  style={{
-                    width: "180px",
-                    height: "180px",
-                    objectFit: "contain",
+                <Box
+                  sx={{
+                    width: "100%",
+                    aspectRatio: "1",
+                    overflow: "hidden",
                     borderRadius: 2,
                   }}
-                />
+                >
+                  <img
+                    src={seller.image}
+                    alt={seller.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </Box>
                 <Typography
                   variant="body1"
                   sx={{
-                    marginTop: 2,
                     color: "white",
                     fontSize: "1.1rem",
-                    fontWeight: "bold",
                   }}
                 >
                   {seller.name}
                 </Typography>
               </Paper>
-              {/* 鼠标悬停时显示买家信息 */}
+
               <Fade in={hoveredSeller?.id === seller.id}>
                 <Paper
                   sx={{
                     position: "absolute",
-                    top: "0px",
+                    top: 0,
                     left: 0,
-                    padding: 2,
-                    backgroundColor: "rgba(139, 109, 109, 0.8)",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(28, 26, 26, 0.8)",
                     color: "white",
-                    borderRadius: 2,
-                    zIndex: 1,
-                    width: "180px",
-                    textAlign: "center",
-                    height: "210px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: "1.1rem",
+                    textAlign: "center",
+                    borderRadius: 2,
                   }}
                 >
                   {seller.info}

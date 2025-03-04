@@ -78,6 +78,26 @@ export default function Bottom() {
                 mb: 2,
               }}
             >
+              链宗
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "white",
+                mb: 5,
+                lineHeight: 2,
+              }}
+            >
+              区块链赋能大宗商品交易，智能合约自动执行，交易透明可信，降低成本，提升效率，让大宗商品交易更安全、更便捷！
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#FFD700",
+                fontWeight: "bold",
+                mb: 2,
+              }}
+            >
               加入社区
             </Typography>
             <Box sx={{ display: "flex", gap: 2 }}>

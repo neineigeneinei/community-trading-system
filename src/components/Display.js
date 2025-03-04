@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Box, Paper } from "@mui/material";
 
 /* 商品展示区域 */
-
 export default function Display() {
   return (
     <Box
@@ -22,7 +21,7 @@ export default function Display() {
           fontWeight: "bold",
         }}
       >
-        商品展示区
+        商品展示
       </Typography>
       <Box
         sx={{
@@ -78,6 +77,19 @@ export default function Display() {
           </Paper>
         ))}
       </Box>
+      <Typography
+        variant="body2"
+        sx={{
+          color: "#FFD700",
+          cursor: "pointer",
+          marginTop: "40px",
+          "&:hover": {
+            color: "rgba(255, 215, 0, 0.7)",
+          },
+        }}
+      >
+        更多商品⨠
+      </Typography>
     </Box>
   );
 }
