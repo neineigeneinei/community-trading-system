@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Box, Paper, Fade } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 const sellers = [
@@ -49,6 +50,7 @@ const sellers = [
 
 export default function MostPopular() {
   const [hoveredSeller, setHoveredSeller] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -106,7 +108,9 @@ export default function MostPopular() {
               sx={{ position: "relative" }}
             >
               <Paper
+                onClick={() => navigate(`/seller/${seller.id}`)}
                 sx={{
+                  cursor: "pointer",
                   width: "200px",
                   padding: 2,
                   backgroundColor: "rgb(45, 38, 44)",

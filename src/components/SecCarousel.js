@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -18,6 +19,7 @@ import {
 import "../App.css"; // 自定义样式
 
 export default function SecCarousel() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -26,9 +28,15 @@ export default function SecCarousel() {
     setSelectedCategory(category);
   };
 
-  const handleClose = () => {
+  const handleClose = (subItem, mainCategory) => {
     setAnchorEl(null);
     setSelectedCategory(null);
+    // 跳转到Buy页面并传递类目参数
+    navigate(
+      `/buy?mainCategory=${encodeURIComponent(
+        mainCategory
+      )}&subCategory=${encodeURIComponent(subItem)}`
+    );
   };
 
   const categoryMenuItems = {
@@ -91,7 +99,7 @@ export default function SecCarousel() {
                 {categoryMenuItems[item.text]?.map((subItem) => (
                   <MenuItem
                     key={subItem}
-                    onClick={handleClose}
+                    onClick={() => handleClose(subItem, item.text)}
                     sx={{
                       color: "white",
                       "&:hover": {

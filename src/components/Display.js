@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Box, Paper } from "@mui/material";
 
-/* 商品展示区域 */
+/* 热销商品展示区域 */
 export default function Display() {
   return (
     <Box
@@ -21,7 +21,7 @@ export default function Display() {
           fontWeight: "bold",
         }}
       >
-        商品展示
+        热销商品展示
       </Typography>
       <Box
         sx={{
